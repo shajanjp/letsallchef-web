@@ -1,0 +1,13 @@
+<div *ngIf="grocery" class="ui segment form">
+	<div class="ui field">
+		<label for="">Title</label>
+		<input [(ngModel)]="grocery.title" placeholder="title">
+	</div>
+	<div class="ui field">
+		<label for="">Categories</label>
+		<select name="" id="" class="ui search dropdown">
+			<option *ngFor="let category of grocery.categories" value="as">{{category}}</option>
+		</select>
+	</div>
+	<button *ngIf="grocery" (click)="goBack()" class="ui button">Back</button>
+</div>

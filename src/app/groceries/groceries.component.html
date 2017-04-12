@@ -1,0 +1,21 @@
+<p>Here are the groceries...</p>
+<div class="ui stackable grid">
+	<div class="twelve wide column">		
+		<div class="ui three column grid">
+			<div class="column" *ngFor="let grocery of groceries" (click)="onSelect(grocery)" [class.active]="grocery === selectedGrocery">
+				<div class="ui fluid card">
+					<div class="content">
+						<div class="header">{{grocery.title}}</div>
+						<div class="meta">{{grocery._id}}</div>
+						<div class="description">
+							Elliot Fu is a film-maker from New York.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="four wide column">	
+		<grocery-detail [grocery]="selectedGrocery"></grocery-detail>	
+	</div>
+</div>
