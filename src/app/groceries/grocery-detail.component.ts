@@ -11,7 +11,7 @@ import { GroceryService } from './grocery.service';
 	templateUrl: './grocery-detail.component.html'
 })
 
-export class GroceryDetailComponent implements OnInit {
+export class GroceryDetailComponent {
 
 	constructor(
 		private groceryService: GroceryService,
@@ -21,11 +21,6 @@ export class GroceryDetailComponent implements OnInit {
 
 	@Input() grocery: Grocery;
 
-	ngOnInit(): void {
-		this.route.params
-		.switchMap((params: Params) => this.groceryService.getGrocery(params['_id']))
-		.subscribe(grocery => this.grocery = grocery);
-	}
 	goBack(): void {
 		this.location.back();
 	}

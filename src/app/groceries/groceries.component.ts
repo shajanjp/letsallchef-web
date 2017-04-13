@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Grocery } from './grocery';
 import { GroceryService } from './grocery.service';
+import { MdButtonModule } from '@angular/material';
 
 @Component({
 	selector: 'app-groceries',
@@ -11,24 +12,20 @@ import { GroceryService } from './grocery.service';
 })
 
 export class GroceriesComponent implements OnInit{
-
+	errorMessage: string;
 	groceries: Grocery[];
 	selectedGrocery: Grocery;
-	constructor( private router: Router, private groceryService: GroceryService) { }
-	
+	mode = 'Observable';
+	constructor(private groceryService: GroceryService) { }
+
+	ngOnInit() { this.getGroceries(); }
+
 	getGroceries(): void {
-		this.groceryService.getGroceries().then(groceries => this.groceries = groceries);
+		console.log("hello");
+		this.groceryService.getGroceries().subscribe(
+			groceries => this.groceries = groceries,
+			error =>  this.errorMessage = <any>error
+			);
 	}
 
-	gotoDetail(): void {
-      this.router.navigate(['/detail', this.selectedGrocery._id]);
-    }
-
-	ngOnInit(): void {
-		this.getGroceries();
-	}
-
-	onSelect(grocery: Grocery): void {
-		this.selectedGrocery = grocery;
-	}
 }
